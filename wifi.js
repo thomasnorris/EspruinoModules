@@ -87,4 +87,9 @@ var _wifi = function (settings, modules, first_connection_cb, afterInit) {
             });
         }
     };
+
+    // init
+    self.fn.init();
 };
+
+exports.wifi = _wifi;
