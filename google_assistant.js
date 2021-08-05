@@ -1,8 +1,10 @@
-var _assistant = function(settings, afterInit) {
+var _assistant = function(settings, modules, afterInit) {
     var self = this;
-    var http = require('http');
-    var core = require('https://raw.githubusercontent.com/thomasnorris/NodeMCUEspruinoModules/master/core.js').core;
-    core = new core();
+
+    this.modules = {
+        core: modules.core,
+        http: modules.http
+    };
 
     this.settings = {
         url: settings.url,
@@ -14,7 +16,7 @@ var _assistant = function(settings, afterInit) {
         init: function() {
             // no init
 
-            core.fn.logInfo('Google Assistant initialized.');
+            self.modules.core.fn.logInfo('Google Assistant initialized.');
 
             if (typeof afterInit == 'function') {
                 afterInit();
@@ -26,21 +28,21 @@ var _assistant = function(settings, afterInit) {
                 'X-Auth': self.settings.auth
             };
 
-            var req = http.request(options, function (res) {
+            var req = self.modules.http.request(options, function (res) {
                 res.on('data', function (data) {
-                    core.fn.logInfo('Assistant Response: ' + data);
+                    self.modules.core.fn.logInfo('Assistant Response: ' + data);
                     if (typeof cb == 'function') {
                         cb(data);
                     }
                 });
 
                 res.on('close', function (data) {
-                    core.fn.logInfo('Connection closed.');
+                    self.modules.core.fn.logInfo('Connection closed.');
                 });
             });
 
             req.on('error', function (err) {
-                core.fn.logError('Assistant error: ' + err);
+                self.modules.core.fn.logError('Assistant error: ' + err);
                 if (typeof cb == 'function' && cb_on_error) {
                     cb(err);
                 }

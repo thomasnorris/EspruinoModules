@@ -1,6 +1,9 @@
-var _core = function (settings, afterInit) {
+var _core = function (settings, modules, afterInit) {
     var self = this;
-    var storage = require('Storage')
+
+    this.modules = {
+        storage: modules.storage
+    };
 
     this.settings = settings;
 
@@ -17,7 +20,7 @@ var _core = function (settings, afterInit) {
         readStorage: function (key) {
             self.fn.logInfo('Reading ' + key + ' from Storage...');
 
-            var value = storage.read(key);
+            var value = self.modules.storage.read(key);
             if (value == undefined) {
                 self.fn.logError(key + ' in Storage is undefined!');
             }
