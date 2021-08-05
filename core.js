@@ -32,7 +32,7 @@ var _core = function (settings, modules, afterInit) {
         },
         nullCoalesce: function (lhs, rhs) {
             // equivalent to lhs ?? rhs
-            if (lhs == false || lhs == undefined) {
+            if (lhs === false || lhs === undefined) {
                 return rhs;
             }
 
