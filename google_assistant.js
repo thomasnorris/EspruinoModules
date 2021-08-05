@@ -1,4 +1,4 @@
-var _assistant = function(settings, modules, afterInit) {
+var _assistant = function (settings, modules, afterInit) {
     var self = this;
 
     this.modules = {
@@ -13,7 +13,7 @@ var _assistant = function(settings, modules, afterInit) {
     };
 
     this.fn = {
-        init: function() {
+        init: function () {
             // no init
 
             self.modules.core.fn.logInfo('Google Assistant initialized.');
