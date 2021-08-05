@@ -1,7 +1,9 @@
 var _gpio = function (settings, afterInit) {
     var self = this;
+    var core = require('https://raw.githubusercontent.com/thomasnorris/NodeMCUEspruinoModules/master/core.js').core;
+
     var modules = {
-        core: _core // require('github submodule')
+        core: new core()
     };
 
     this.settings = {
