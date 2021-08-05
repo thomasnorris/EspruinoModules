@@ -15,11 +15,11 @@ var _core = function (settings, afterInit) {
             }
         },
         readStorage: function (key) {
-            console.log('Reading ' + key + ' from Storage...');
+            self.fn.logInfo('Reading ' + key + ' from Storage...');
 
             var value = storage.read(key);
             if (value == undefined) {
-                console.log(key + ' in Storage is undefined!');
+                self.fn.logError(key + ' in Storage is undefined!');
             }
 
             return value;

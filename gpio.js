@@ -14,7 +14,7 @@ var _gpio = function (settings, afterInit) {
             var modes = self.settings.modes;
 
             for (var i = 0; i < pins.length; ++i) {
-                console.log('Setting ' + pins[i] + ' to ' + modes[i]);
+                core.fn.logInfo('Setting ' + pins[i] + ' to ' + modes[i]);
                 pinMode(pins[i], modes[i]);
             }
 
