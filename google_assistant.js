@@ -22,38 +22,30 @@ var _assistant = function (settings, modules, afterInit) {
                 afterInit();
             }
         },
-        send: function (command, cb, cb_on_error) {
+        send: function (command, afterSend) {
             var options = url.parse(self.settings.url + self.settings.endpoint + '/' + encodeURIComponent(command));
             options.headers = {
                 'X-Auth': self.settings.auth
             };
 
-            var req = self.modules.http.request(options, function (res) {
+            self.modules.http.get(options, function (res) {
+                var response = '';
                 res.on('data', function (data) {
-                    self.modules.core.fn.logInfo('Assistant Response: ' + data);
-                    if (typeof cb == 'function') {
-                        cb(data);
+                    response += data;
+                });
+
+                res.on('close', function () {
+                    self.modules.core.fn.logInfo('Connection closed.');
+                    self.modules.core.fn.logInfo('Assistant response: ' + response);
+
+                    if (typeof afterSend == 'function') {
+                        afterSend(response);
                     }
                 });
-
-                res.on('close', function (data) {
-                    self.modules.core.fn.logInfo('Connection closed.');
-                });
             });
-
-            req.on('error', function (err) {
-                self.modules.core.fn.logError('Assistant error: ' + err);
-                if (typeof cb == 'function' && cb_on_error) {
-                    cb(err);
-                }
-            });
-
-            req.end();
         }
     };
 
     // init
     self.fn.init();
 };
-
-exports.assistant = _assistant;
