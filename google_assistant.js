@@ -49,3 +49,5 @@ var _assistant = function (settings, modules, afterInit) {
     // init
     self.fn.init();
 };
+
+exports.assistant = _assistant;
