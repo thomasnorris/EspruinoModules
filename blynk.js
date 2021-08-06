@@ -18,7 +18,7 @@ var _blynk = function (settings, modules, afterInit) {
         init: function () {
             self.conn = new self.modules.blynk.Blynk(self.settings.auth, {
                 addr: self.settings.url,
-                port: self.settings.url,
+                port: self.settings.port,
                 skip_connect: true
             });
 
