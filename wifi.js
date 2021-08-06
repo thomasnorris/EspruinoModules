@@ -45,7 +45,7 @@ var _wifi = function (settings, modules, first_connection_cb, afterInit) {
             self.modules.core.fn.logInfo('Wifi initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         connect: function () {

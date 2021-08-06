@@ -19,7 +19,7 @@ var _assistant = function (settings, modules, afterInit) {
             self.modules.core.fn.logInfo('Google Assistant initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         send: function (command, afterSend) {

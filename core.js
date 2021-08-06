@@ -14,7 +14,7 @@ var _core = function (settings, modules, afterInit) {
             self.fn.logInfo('Core initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         readStorage: function (key) {

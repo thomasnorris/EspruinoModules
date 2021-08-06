@@ -22,12 +22,13 @@ var _hcsr04 = function (settings, modules, afterInit) {
         init: function () {
             self.conn = self.modules.hcsr04.connect(self.settings.gpio.trigger_pin, self.settings.gpio.echo_pin, function (dist) {
                 self.dist_cm = dist.toFixed(2);
+                self.fn.onEcho(self.dist_cm);
             });
 
             self.modules.core.fn.logInfo('HC-SR04 initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         startMonitoring: function () {
@@ -39,6 +40,10 @@ var _hcsr04 = function (settings, modules, afterInit) {
         stopMonitoring: function () {
             self.modules.core.fn.logInfo('Stopping HC-SR04 monitoring.');
             clearInterval(self.trigger_interval);
+        },
+        // overrides
+        onEcho: function(dist_cm) {
+            self.modules.core.fn.logWarn('HC-SR04 onEcho should be overridden!');
         }
     };
 

@@ -23,7 +23,7 @@ var _gpio = function (settings, modules, afterInit) {
             self.modules.core.fn.logInfo('GPIO initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         toggleInterval: function (pin, interval) {

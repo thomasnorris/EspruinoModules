@@ -35,7 +35,7 @@ var _blynk = function (settings, modules, first_connection_cb, afterInit) {
             self.modules.core.fn.logInfo('Blynk initialized.');
 
             if (typeof afterInit == 'function') {
-                afterInit();
+                afterInit(self);
             }
         },
         connect: function () {
