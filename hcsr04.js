@@ -1,10 +1,11 @@
-var _hcsr04 = function(settings, modules, afterInit) {
+var _hcsr04 = function (settings, modules, afterInit) {
     var self = this;
 
     this.modules = {
         core: modules.core,
         hcsr04: modules.hcsr04
     };
+
     this.settings = {
         trigger_interval_ms: settings.trigger_interval_ms,
         gpio: {
@@ -18,8 +19,8 @@ var _hcsr04 = function(settings, modules, afterInit) {
     this.dist_cm = undefined;
 
     this.fn = {
-        init: function() {
-            self.conn = self.modules.hcsr04.connect(self.settings.gpio.trigger_pin, self.settings.gpio.echo_pin, function(dist) {
+        init: function () {
+            self.conn = self.modules.hcsr04.connect(self.settings.gpio.trigger_pin, self.settings.gpio.echo_pin, function (dist) {
                 self.dist_cm = dist.toFixed(2);
             });
 
@@ -29,13 +30,13 @@ var _hcsr04 = function(settings, modules, afterInit) {
                 afterInit();
             }
         },
-        startMonitoring: function() {
+        startMonitoring: function () {
             self.modules.core.fn.logInfo('Starting HC-SR04 monitoring.');
-            self.trigger_interval = setInterval(function() {
+            self.trigger_interval = setInterval(function () {
                 self.conn.trigger();
             }, self.settings.trigger_interval_ms);
         },
-        stopMonitoring: function() {
+        stopMonitoring: function () {
             self.modules.core.fn.logInfo('Stopping HC-SR04 monitoring.');
             clearInterval(self.trigger_interval);
         }
