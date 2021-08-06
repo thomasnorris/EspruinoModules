@@ -17,6 +17,10 @@ var _blynk = function (settings, modules, first_connection_cb, afterInit) {
         self.modules.core.fn.logWarn('Blynk first_connection_cb is not defined!');
     });
 
+    this.components = {
+        // populated per device
+    };
+
     this.fn = {
         init: function () {
             self.conn = new self.modules.blynk.Blynk(self.settings.auth, {
