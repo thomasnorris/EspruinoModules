@@ -1,4 +1,4 @@
-var _blynk = function (settings, modules, afterInit) {
+var _blynk = function (settings, modules, first_connection_cb, afterInit) {
     var self = this;
 
     this.modules = {
@@ -13,6 +13,9 @@ var _blynk = function (settings, modules, afterInit) {
     };
 
     this.conn = undefined;
+    this.first_connection_cb = self.modules.core.fn.nullCoalesce(first_connection_cb, function () {
+        self.modules.core.fn.logWarn('Blynk first_connection_cb is not defined!');
+    });
 
     this.fn = {
         init: function () {
@@ -20,6 +23,13 @@ var _blynk = function (settings, modules, afterInit) {
                 addr: self.settings.url,
                 port: self.settings.port,
                 skip_connect: true
+            });
+
+            self.conn.on('connect', function() {
+                if (typeof self.first_connection_cb == 'function') {
+                    self.first_connection_cb();
+                    self.first_connection_cb = undefined;
+                }
             });
 
             self.modules.core.fn.logInfo('Blynk initialized.');
