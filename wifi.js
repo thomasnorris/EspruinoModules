@@ -3,8 +3,8 @@ var _wifi = function (settings, modules, first_connection_cb, afterInit) {
 
     this.modules = {
         core: modules.core,
-        wifi: modules.wifi,
-        gpio: modules.gpio
+        gpio: modules.gpio,
+        wifi: require('Wifi')
     };
 
     this.settings = {

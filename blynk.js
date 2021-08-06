@@ -3,7 +3,7 @@ var _blynk = function (settings, modules, afterInit) {
 
     this.modules = {
         core: modules.core,
-        blynk: modules.blynk
+        blynk: require('https://raw.githubusercontent.com/thomasnorris/blynk-library-js/8e7f4f87131bac09b454a46de235ba0517209373/blynk-espruino.js')
     };
 
     this.settings = {

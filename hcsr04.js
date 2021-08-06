@@ -3,7 +3,7 @@ var _hcsr04 = function (settings, modules, afterInit) {
 
     this.modules = {
         core: modules.core,
-        hcsr04: modules.hcsr04
+        hcsr04: require('HC-SR04')
     };
 
     this.settings = {

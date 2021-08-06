@@ -1,8 +1,8 @@
 var _core = function (settings, modules, afterInit) {
     var self = this;
 
-    this.modules = {
-        storage: modules.storage
+    this.modules ={
+        storage: require('Storage')
     };
 
     this.settings = settings;

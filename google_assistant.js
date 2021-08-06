@@ -3,7 +3,7 @@ var _assistant = function (settings, modules, afterInit) {
 
     this.modules = {
         core: modules.core,
-        http: modules.http
+        http:  require('http')
     };
 
     this.settings = {
