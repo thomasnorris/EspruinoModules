@@ -30,6 +30,8 @@ var _hcsr04 = function (settings, modules, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         startMonitoring: function () {
             self.modules.core.fn.logInfo('Starting HC-SR04 monitoring.');

@@ -16,6 +16,8 @@ var _core = function (settings, modules, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         readStorage: function (key) {
             self.fn.logInfo('Reading ' + key + ' from Storage...');

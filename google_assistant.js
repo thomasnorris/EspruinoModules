@@ -21,6 +21,8 @@ var _assistant = function (settings, modules, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         send: function (command, afterSend) {
             var options = url.parse(self.settings.url + self.settings.endpoint + '/' + encodeURIComponent(command));

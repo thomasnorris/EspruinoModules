@@ -47,6 +47,8 @@ var _wifi = function (settings, modules, first_connection_cb, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         connect: function () {
             if (self.settings.led.enable_toggle) {

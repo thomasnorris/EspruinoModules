@@ -25,6 +25,8 @@ var _gpio = function (settings, modules, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         toggleInterval: function (pin, interval) {
             var state = 1;

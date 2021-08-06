@@ -41,6 +41,8 @@ var _blynk = function (settings, modules, first_connection_cb, afterInit) {
             if (typeof afterInit == 'function') {
                 afterInit(self);
             }
+
+            delete self.fn.init;
         },
         connect: function () {
             self.modules.core.fn.logInfo('Connecting Blynk...');
@@ -51,7 +53,7 @@ var _blynk = function (settings, modules, first_connection_cb, afterInit) {
                 if (value == 0 && typeof cb_on_0 == 'function') {
                     cb_on_0();
                 }
-                else if (value == 1 && cb_on_1 == 'function') {
+                else if (value == 1 && typeof cb_on_1 == 'function') {
                     cb_on_1();
                 }
             });
